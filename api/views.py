@@ -15,6 +15,7 @@ def list_products(request):
 
         return Response(serializer.data)
     elif request.method == "POST":
+        print(request.data)
         serializer = ProdutoSerializer(data=request.data)
         responseStatus = status.HTTP_400_BAD_REQUEST
 
@@ -22,4 +23,4 @@ def list_products(request):
             serializer.save()
             responseStatus = status.HTTP_201_CREATED
 
-        return Response(serializer.data, status=responseStatus)
+        return Response(data=serializer.data, status=responseStatus)
